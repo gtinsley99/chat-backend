@@ -41,8 +41,28 @@ const deleteUser = async (req, res) => {
     }
 };
 
+const loginUser = async (req, res) => {
+    try {
+        const user = await User.findOne({
+            username: req.body.username,
+        });
+        const token = jwt.sign({_id: user._id}, process.env.JWTPASSWORD, {expiresIn: "7d"});
+        res.status(201).json({
+            message: "Logged in",
+            username: user.username,
+            token: token,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(501).json({
+          message: error.message,
+          detail: error,
+        });
+    }
+};
 
 module.exports = {
     addUser,
     deleteUser,
+    loginUser,
 }
