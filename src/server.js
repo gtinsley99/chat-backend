@@ -1,6 +1,9 @@
 // Import dotenv and configure its content
 require("dotenv").config();
 
+// Connect to the database
+require("./db/connection");
+
 // Import express and cors
 const express = require("express");
 const cors = require("cors");
@@ -20,7 +23,7 @@ const port = process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 
-app.use(userRouter);
+app.use("/user", userRouter);
 
 // Health check for API - see if server is working
 app.use("/health", (req, res) => {
