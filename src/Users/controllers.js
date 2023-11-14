@@ -61,8 +61,27 @@ const loginUser = async (req, res) => {
     }
 };
 
+const loginWithToken = async (req, res) => {
+    try {
+        const userDetails = await User.findOne({
+            username: req.user.username,
+        });
+        res.status(201).json({
+            message: "Logged in",
+            username: userDetails.username,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(501).json({
+          message: error.message,
+          detail: error,
+        });
+    }
+};
+
 module.exports = {
     addUser,
     deleteUser,
     loginUser,
+    loginWithToken,
 }
