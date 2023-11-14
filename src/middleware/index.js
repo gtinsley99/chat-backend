@@ -25,9 +25,7 @@ const hashPassword = async (req, res, next) => {
 const passwordCheck = async (req, res, next) => {
     try {
       let match = false;
-      const userDetails = await User.findOne({
-        where: { username: req.body.username },
-      });
+      const userDetails = await User.findOne({ username: req.body.username });
       if (userDetails) {
         const compare = await bcrypt.compare(
           req.body.password,
@@ -63,8 +61,8 @@ const passwordCheck = async (req, res, next) => {
 // Check if jwt is valid 
 const tokenCheck = async (req, res, next) => {
     try {
-      const userID = jwt.verify(req.header("Authorization").replace("Bearer ",""), process.env.JWTPASSWORD).id;
-      const user = await User.findOne({where: {id: userID}});
+      const userID = jwt.verify(req.header("Authorization").replace("Bearer ",""), process.env.JWTPASSWORD)._id;
+      const user = await User.findOne({_id: userID});
       if (!user){
         throw new Error ("User not found");
       } else {
