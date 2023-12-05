@@ -12,6 +12,7 @@ const app = express();
 
 // Models
 const User = require("./Users/model");
+const ChatRoom = require("./ChatRoom/model");
 
 // Routes
 const userRouter = require("./Users/routes");
