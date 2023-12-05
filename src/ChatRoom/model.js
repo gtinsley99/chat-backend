@@ -8,4 +8,4 @@ const ChatRoomSchema = new mongoose.Schema(
 );
 
 const ChatRoom = mongoose.model("chatRoom", ChatRoomSchema);
-export default ChatRoom;
+module.exports =  ChatRoom;
