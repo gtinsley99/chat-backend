@@ -9,7 +9,7 @@ userRouter.post("/adduser", hashPassword, addUser);
 // Delete user
 userRouter.delete("/deleteuser", tokenCheck, passwordCheck, deleteUser);
 // Login user
-userRouter.get("/login", passwordCheck, loginUser),
+userRouter.post("/login", passwordCheck, loginUser),
 // Login user with token
 userRouter.get("/loginwithtoken", tokenCheck, loginWithToken);
 
