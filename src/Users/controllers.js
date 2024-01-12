@@ -79,9 +79,43 @@ const loginWithToken = async (req, res) => {
     }
 };
 
+const getAllUsers = async (req, res) => {
+    try {
+        const userList = await User.find({}).select("username");
+        res.status(201).json({
+            message: "success",
+            users: userList,
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(501).json({
+          message: error.message,
+          detail: error,
+        });
+    }
+}
+
+const getUser = async (req, res) => {
+    try {
+        const userList = await User.findOne({_id: req.params.userId}).select("username");
+        res.status(201).json({
+            message: "success",
+            users: userList,
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(501).json({
+          message: error.message,
+          detail: error,
+        });
+    }
+}
+
 module.exports = {
     addUser,
     deleteUser,
     loginUser,
     loginWithToken,
+    getAllUsers,
+    getUser,
 }
