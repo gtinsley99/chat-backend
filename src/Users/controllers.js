@@ -71,6 +71,7 @@ const loginWithToken = async (req, res) => {
         res.status(201).json({
             message: "Logged in",
             username: userDetails.username,
+            id: userDetails.id,
         });
     } catch (error) {
         console.log(error);
