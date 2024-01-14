@@ -12,6 +12,7 @@ const addUser = async (req, res) => {
         res.status(201).json({
             message: "User registered",
             username: user.username,
+            id: user.id,
             token: token,
         });
     } catch (error) {
@@ -50,6 +51,7 @@ const loginUser = async (req, res) => {
         res.status(201).json({
             message: "Logged in",
             username: user.username,
+            id: user.id,
             token: token,
         });
     } catch (error) {
